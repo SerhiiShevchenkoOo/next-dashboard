@@ -1,4 +1,5 @@
 import { sql } from '@vercel/postgres';
+
 import {
   CustomerField,
   CustomersTableType,
@@ -64,6 +65,7 @@ export async function fetchCardData() {
          SUM(CASE WHEN status = 'pending' THEN amount ELSE 0 END) AS "pending"
          FROM invoices`;
 
+    await new Promise((resolve) => setTimeout(resolve, 3000));
     const data = await Promise.all([
       invoiceCountPromise,
       customerCountPromise,
